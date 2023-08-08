@@ -1,0 +1,100 @@
+.movie {
+  border-radius: 15px;
+  background-color: #222;
+  width: 270px;
+}
+
+.movie__image {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+  display: block;
+  object-position: center;
+  width: 270px;
+  height: 151px;
+}
+
+.movie__container-info {
+  margin: 14px 12px 14px 12px;
+}
+
+.movie__container-info_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.movie__container-info_title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.movie__button-save {
+  border: 2px rgba(255, 255, 255, 0.8) solid;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.movie__button-save_active {
+  background-color: #2be080;
+}
+
+.movie__button-delete {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background-image: url(../../../images/button-delete.svg);
+  background-color: transparent;
+  background-position: center;
+  transition: opacity 0.5s linear;
+  border: none;
+}
+
+.movie__button-delete:hover {
+  opacity: 0.5;
+}
+
+.movie__duration {
+  margin: 10px 0 0 0;
+  color: #8B8B8B;
+  font-size: 11px;
+}
+
+.movie {
+  border-radius: 15px;
+  background-color: #222;
+  width: 270px;
+}
+
+@media screen and (max-width: 1100px) {
+  .movie {
+    border-radius: 15px;
+    background-color: #222;
+    width: 339px;
+  }
+
+  .movie__image {
+    width: 339px;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .movie {
+    border-radius: 15px;
+    background-color: #222;
+    width: 300px;
+  }
+
+  .movie__image {
+    width: 300px;
+    height: 168px;
+  }
+}

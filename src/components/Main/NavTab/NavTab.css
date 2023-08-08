@@ -1,0 +1,49 @@
+.header__button {
+    text-decoration: none;
+    font-size: 12px;
+    color: #fff;
+}
+
+.header__button_signup {
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+.header__button_signup:hover {
+    opacity: 0.5;
+}
+
+.header__button_signin {
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0 0 0 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background-color: #3DDC84;
+    width: 76px;
+    height: 32px;
+    color: #000;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+.header__button_signin:hover {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 700px) {
+    .header__button {
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    .header__button_signin {
+        margin: 0 0 0 14px;
+        width: 54px;
+        height: 26px;
+    }
+}
