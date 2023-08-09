@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 import headerLogo from '../../images/logo.svg';
 import { useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
@@ -16,7 +17,9 @@ const Header = ({ backgroundColor }) => {
   return (
     <header style={headerStyle} className="header">
       <div className='header__contaner'>
-        <img src={headerLogo} className="header__logo" alt="Logo" />
+        <Link to="/" className="header__container-logo">
+          <img src={headerLogo} className="header__logo" alt="Logo" />
+        </Link>
         {isAuthPage ? <Navigation /> : <NavTab />}
       </div>
     </header>

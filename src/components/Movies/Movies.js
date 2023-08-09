@@ -14,8 +14,8 @@ const Movies = () => {
       <main>
         <SeachForm />
         <MoviesCardList filmList={filmList} />
-        <Footer />
       </main>
+      <Footer />
     </section>
   );
 };

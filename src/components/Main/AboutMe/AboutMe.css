@@ -8,7 +8,7 @@
     border-bottom: 1px solid #DADADA;
 }
 
-.aboutMe__group-title_title {
+.aboutMe__title {
     font-size: 22px;
     font-weight: 400;
     letter-spacing: -0.88px;
@@ -23,12 +23,12 @@
     padding: 66px 0 0 0;
 }
 
-.aboutMe__student-container_text-group {
+.aboutMe__text-group {
     max-width: 600px;
 
 }
 
-.aboutMe__student-containet_foto {
+.aboutMe__foto {
     width: 270px;
     height: 327px;
     border-radius: 10px;
@@ -36,7 +36,7 @@
 
 }
 
-.aboutMe__student-container_name {
+.aboutMe__name {
     font-size: 50px;
     font-weight: 400;
     line-height: 58px;
@@ -45,7 +45,7 @@
     padding: 0 0 18px 0;
 }
 
-.aboutMe__student-container_text-about {
+.aboutMe__text-about {
     margin: 0;
     padding: 0 0 26px 0;
     font-size: 18px;
@@ -53,7 +53,7 @@
     line-height: 20px;
 }
 
-.aboutMe__student-container_text-history {
+.aboutMe__text-history {
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
@@ -61,7 +61,7 @@
     padding: 0 0 99px 0;
 }
 
-.aboutMe__student-container_link {
+.aboutMe__link {
     cursor: pointer;
     text-decoration: none;
     color: #FFF;
@@ -69,7 +69,7 @@
     font-weight: 500;
 }
 
-.aboutMe__student-container_link:hover {
+.aboutMe__link:hover {
     opacity: 0.5;
 }
 
@@ -88,30 +88,30 @@
         gap: 49px;
     }
 
-    .aboutMe__student-container_text-group {
+    .aboutMe__text-group {
         max-width: 668px;
 
     }
 
-    .aboutMe__student-containet_foto {
+    .aboutMe__foto {
         width: 255px;
         height: 307px;
     }
 
-    .aboutMe__student-container_name {
+    .aboutMe__name {
         font-size: 40px;
         line-height: 40px;
         letter-spacing: -1.6px;
         padding: 0 0 16px 0;
     }
 
-    .aboutMe__student-container_text-about {
+    .aboutMe__text-about {
         font-size: 12px;
         line-height: 18px;
         padding: 0 0 20px 0;
     }
 
-    .aboutMe__student-container_text-history {
+    .aboutMe__text-history {
         font-size: 12px;
         line-height: 18px;
         padding: 0 0 86px 0;
@@ -129,7 +129,7 @@
         width: 292px;
     }
 
-    .aboutMe__group-title_title {
+    .aboutMe__title {
         font-size: 18px;
         letter-spacing: -0.72px;
         margin: 0 0 28px 0;
@@ -141,32 +141,32 @@
         gap: 0px;
     }
 
-    .aboutMe__student-container_text-group {
+    .aboutMe__text-group {
         max-width: 292px;
 
     }
 
-    .aboutMe__student-containet_foto {
+    .aboutMe__foto {
         width: 292px;
         height: 352px;
         margin: 0 auto 40px 0;
 
     }
 
-    .aboutMe__student-container_name {
+    .aboutMe__name {
         font-size: 30px;
         line-height: normal;
         letter-spacing: -1.2px;
         padding: 0 0 20px 0;
     }
 
-    .aboutMe__student-container_text-about {
+    .aboutMe__text-about {
         padding: 0 0 20px 0;
         font-size: 11px;
         line-height: 16px;
     }
 
-    .aboutMe__student-container_text-history {
+    .aboutMe__text-history {
         font-size: 11px;
         line-height: 16px;
         padding: 0 0 38px 0

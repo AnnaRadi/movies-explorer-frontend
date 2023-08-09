@@ -17,7 +17,7 @@
   gap: 5px;
 }
 
-.not-found__title_number {
+.not-found__title-number {
   margin: auto 0 0 0;
   font-size: 140px;
   font-style: normal;
@@ -37,7 +37,7 @@
   margin: 0;
 }
 
-.button_type_to-main {
+.not-found__button {
   color: #4285F4;
   text-align: center;
   font-family: 'Inter';
@@ -62,7 +62,7 @@
     padding: 329px 0 30px;
   }
 
-  .not-found__title_number {
+  .not-found__title-number {
     margin: 0 0 10px;
     font-size: 80px;
   }
@@ -72,7 +72,8 @@
     font-size: 12px;
   }
 
-  .button_type_to-main {
+  .not-found__button {
     font-size: 12px;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
   }
 }

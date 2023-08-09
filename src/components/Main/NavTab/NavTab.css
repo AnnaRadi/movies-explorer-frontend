@@ -4,17 +4,17 @@
     color: #fff;
 }
 
-.header__button_signup {
+.header__button-signup {
     cursor: pointer;
     color: #fff;
     text-decoration: none;
 }
 
-.header__button_signup:hover {
+.header__button-signup:hover {
     opacity: 0.5;
 }
 
-.header__button_signin {
+.header__button-signin {
     cursor: pointer;
     text-decoration: none;
     margin: 0 0 0 30px;
@@ -30,7 +30,7 @@
     line-height: 16px;
 }
 
-.header__button_signin:hover {
+.header__button-signin:hover {
     opacity: 0.5;
 }
 
@@ -41,7 +41,7 @@
         line-height: 16px;
     }
 
-    .header__button_signin {
+    .header__button-signin {
         margin: 0 0 0 14px;
         width: 54px;
         height: 26px;

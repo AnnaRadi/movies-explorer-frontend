@@ -15,8 +15,8 @@ const MoviesCard = ({ film }) => {
     <li className='movie'>
       <img src={film.image} className='movie__image' alt={film.name} />
       <div className='movie__container-info'>
-        <div className='movie__container-info_box'>
-          <h2 className='movie__container-info_title'>{film.name}</h2>
+        <div className='movie__box'>
+          <h2 className='movie__title'>{film.name}</h2>
           {isSavedFilmsPage ? (
             <button type='button' className='movie__button-delete' aria-label='Удалить фильм'></button>
           ) : (

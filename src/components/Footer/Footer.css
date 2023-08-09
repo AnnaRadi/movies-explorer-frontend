@@ -40,17 +40,17 @@
     align-items: center;
 }
 
-.footer__group-link_link {
+.footer__link {
     color: #fff;
     text-decoration: none;
     padding: 0 0 0 20px;
 }
 
-.footer__group-link_link-first:hover {
+.footer__link_first:hover {
     opacity: 0.5;
 }
 
-.footer__group-link_link-second:hover {
+.footer__link_second:hover {
     opacity: 0.5;
 }
 
@@ -94,7 +94,7 @@
         gap: 12px;
     }
 
-    .footer__group-link_link {
+    .footer__link {
         padding: 0;
     }
 }

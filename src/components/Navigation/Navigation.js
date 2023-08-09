@@ -18,15 +18,17 @@ function Navigation() {
           {isMenuOpen && (
             <Link to="/" className="navigation__moovie">Главная</Link>
           )}
-          <Link to="/movies" className="navigation__moovie navigation__container_link-film">Фильмы</Link>
-          <Link to="/saved-movies" className="navigation__moovie navigation__container_link">Сохраненные фильмы</Link>
+          <Link to="/movies" className="navigation__moovie navigation__film">Фильмы</Link>
+          <Link to="/saved-movies" className="navigation__moovie navigation__link">Сохраненные фильмы</Link>
         </div>
-        <Link to="/profile" className="navigation__container_account">
-          <p className="navigation__container_account-title">Аккаунт</p>
-          <img className='navigation__container_account-img' src={img} alt='профиль' />
+        <Link to="/profile" className="navigation__container-account">
+          <p className="navigation__title">Аккаунт</p>
+          <div className='navigation__container-img'>
+            <img className='navigation__img' src={img} alt='профиль' />
+          </div>
         </Link>
-        {!isMenuOpen && <button type="button" className="nav__burger" onClick={burgerMenu} aria-label='Открыть бургерное меню'></button>}
-        {isMenuOpen && <button type="button" className="nav__burger-close" onClick={burgerMenu} aria-label='Закрыть бургерное меню'></button>}
+        {!isMenuOpen && <button type="button" className="navigation__burger" onClick={burgerMenu} aria-label='Открыть бургерное меню'></button>}
+        {isMenuOpen && <button type="button" className="navigation__burger-close" onClick={burgerMenu} aria-label='Закрыть бургерное меню'></button>}
       </nav>
     </>
   );

@@ -20,13 +20,20 @@
     border-bottom: 1px #424242 solid;
 }
 
-.profile__container_label {
+.profile__container-label {
     background-color: #202020;
     color: #fff;
     border: none;
     width: 122px;
     height: 14px;
 }
+
+.profile__container_label:focus {
+    border-radius: 2px;
+    outline: 1px solid #a2a2a2;
+    border: none;
+    outline-offset: 3px;
+  }
 
 .profile__container-title {
     font-size: 11px;
@@ -43,7 +50,7 @@
     padding: 0 0 16px 0;
 }
 
-.profile__container_email {
+.profile__container-email {
     padding: 17px 0 204px 0;
     display: flex;
     justify-content: space-between;
@@ -118,7 +125,7 @@
         padding: 0 0 96px 0;
     }
 
-    .profile__container_email {
+    .profile__container-email {
         padding: 17px 0 194px 0;
     }
 }
@@ -134,7 +141,7 @@
         font-size: 24px;
     }
 
-    .profile__container_email {
+    .profile__container-email {
         padding: 16px 0 363px 0;
     }
 

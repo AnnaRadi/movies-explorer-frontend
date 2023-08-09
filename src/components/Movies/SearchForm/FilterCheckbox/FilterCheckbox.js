@@ -2,12 +2,12 @@ import './FilterCheckbox.css'
 
 const FilterCheckbox = () => {
   return (
-    <section className="filterCheckbox__checkbox">
-      <label className="searchForm__group-checkbox_tumbler">
-        <input className="searchForm__group-checkbox_checkbox-check" type="checkbox" />
-        <span className="searchForm__group-checkbox_slider" />
+    <section className="searchForm__checkbox">
+      <label className="searchForm__tumbler">
+        <input className="searchForm__checkbox-check" type="checkbox" />
+        <span className="searchForm__slider" />
       </label>
-      <p className="searchForm__group-checkbox_film">Короткометражки</p>
+      <p className="searchForm__film">Короткометражки</p>
     </section>
   );
 }

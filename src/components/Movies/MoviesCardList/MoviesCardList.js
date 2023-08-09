@@ -29,7 +29,7 @@ const MoviesCardList = ({ filmList }) => {
               ))}
             </ul>
             {filmList.length > 14 && (
-              <button className="moviescards__button">Ещё</button>
+              <button className="moviesCardsList__button">Ещё</button>
             )}
           </>
         )}

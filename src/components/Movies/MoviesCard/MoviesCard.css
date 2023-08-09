@@ -18,14 +18,14 @@
   margin: 14px 12px 14px 12px;
 }
 
-.movie__container-info_box {
+.movie__box {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: row;
 }
 
-.movie__container-info_title {
+.movie__title {
   margin: 0;
   font-size: 13px;
   font-weight: 500;

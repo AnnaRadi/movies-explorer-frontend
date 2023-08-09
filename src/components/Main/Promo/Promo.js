@@ -7,9 +7,9 @@ const Promo = () => {
   return (
     <section className="promo">
       <Header />
-      <div className='promo__block'>
-        <div className='promo__group'>
-          <article className="promo__text-conteiner">
+      <div className='promo__container'>
+        <div className='promo__text-group'>
+          <article className="promo__group-article">
             <h1 className="promo__title">Учебный проект студента факультета <span className='promo__title-span'>Веб-разработки.</span></h1>
             <p className="promo__subtitle">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
           </article>

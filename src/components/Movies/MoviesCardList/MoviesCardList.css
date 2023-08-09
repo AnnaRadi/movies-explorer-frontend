@@ -18,7 +18,7 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.moviescards__button {
+.moviesCardsList__button {
   cursor: pointer;
   padding: 0;
   margin: 80px auto 0 auto;
@@ -35,7 +35,7 @@
   transition: opacity 0.5s linear;
 }
 
-.moviescards__button:hover {
+.moviesCardsList__button:hover {
   opacity: 0.5;
 }
 
@@ -54,7 +54,7 @@
     row-gap: 35px;
   }
 
-  .moviescards__button {
+  .moviesCardsList__button {
     margin: 79px auto 0 auto;
     height: 36px;
   }
@@ -70,7 +70,7 @@
     row-gap: 20px;
   }
 
-  .moviescards__button {
+  .moviesCardsList__button {
     margin: 79px auto 0 auto;
     height: 36px;
     width: 240px;

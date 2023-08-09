@@ -1,18 +1,18 @@
-.filterCheckbox__checkbox {
+.searchForm__checkbox {
   margin: 32px 0 47px 0;
   display: flex;
   gap: 14px;
   align-items: center;
 }
 
-.searchForm__group-checkbox_film {
+.searchForm__film {
   font-weight: 400;
   line-height: 18px;
   font-size: 13px;
   margin: 0;
 }
 
-.searchForm__group-checkbox_tumbler {
+.searchForm__tumbler {
   cursor: pointer;
   width: 36px;
   height: 20px;
@@ -20,11 +20,11 @@
   display: inline-block;
 }
 
-.searchForm__group-checkbox_checkbox-check {
+.searchForm__checkbox-check {
   display: none;
 }
 
-.searchForm__group-checkbox_slider {
+.searchForm__slider {
   position: absolute;
   inset: 0;
   background-color: #2be080;
@@ -33,7 +33,7 @@
   transition: .5s;
 }
 
-.searchForm__group-checkbox_slider::before {
+.searchForm__slider::before {
   border: 1px solid #2be080;
   border-radius: 50%;
   background-color: #fff;
@@ -45,18 +45,18 @@
   content: '';
 }
 
-.searchForm__group-checkbox_checkbox-check:checked+.searchForm__group-checkbox_slider {
+.searchForm__checkbox-check:checked+.searchForm__slider {
   background-color: #A0A0A0;
 }
 
-.searchForm__group-checkbox_checkbox-check:checked+.searchForm__group-checkbox_slider::before {
+.searchForm__checkbox-check:checked+.searchForm__slider::before {
   transform: translateX(16px);
   background-color: #A0A0A0;
   border: 1px solid #000;
 }
 
 @media screen and (max-width: 1100px) {
-  .filterCheckbox__checkbox {
+  .searchForm__checkbox {
     justify-content: end;
     margin: 29px 0 47px 0;
     flex-direction: row-reverse;
@@ -64,12 +64,12 @@
 }
 
 @media screen and (max-width: 720px) {
-  .filterCheckbox__checkbox {
+  .searchForm__checkbox {
     justify-content: center;
     margin: 38px 0 10px 0;
   }
 
-  .searchForm__group-checkbox_film {
+  .searchForm__film {
     font-size: 11px;
     font-weight: 400;
     line-height: 18px;
