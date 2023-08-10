@@ -1,6 +1,6 @@
 .page {
   max-width: 1280px;
-  margin: 0;
+  margin: 0 auto;
   background-color: #202020;
   box-sizing: border-box;
   color: #fff;

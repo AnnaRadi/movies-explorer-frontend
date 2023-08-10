@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import Header from '../Header/Header';
 import './Profile.css';
 
@@ -22,12 +23,12 @@ const Profile = () => {
         <form className='profile__form'>
           <div className='profile__container-name'>
             <label htmlFor='name' className='profile__container-title'>Имя</label>
-            {isEdit ? <input type='text' name='name' minLength='2' maxLength='30'placeholder="Аня"
+            {isEdit ? <input type='text' name='name' minLength='2' maxLength='30'placeholder="Введите ваше имя"
               className='profile__container_label' /> : <span className='profile__container-value'>Аня</span>}
           </div>
           <div className='profile__container-email'>
             <label htmlFor='email' className='profile__container-title'>E-mail</label>
-            {isEdit ? <input type='email' name='email'placeholder="aradion0va@yandex.ru"
+            {isEdit ? <input type='email' name='email'placeholder="Введите вашу почту"
               className='profile__container-label' /> : <span className='profile__container-value'>aradion0va@yandex.ru</span>}
           </div>
         </form>
@@ -47,9 +48,9 @@ const Profile = () => {
               <button type='button' className='profile__button-edit' href='/' onClick={handleEditClick} aria-label='Редактировать профиль'>
                 Редактировать
               </button>
-              <button type='button' className='profile__button-exit' href='/signout' aria-label='Выйти из аккаунта'>
+              <Link type='button' to='/' className='profile__button-exit' href='/signout' aria-label='Выйти из аккаунта'>
                 Выйти из аккаунта
-              </button>
+              </Link>
             </div>
           </>
         )}

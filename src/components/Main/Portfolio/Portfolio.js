@@ -1,5 +1,4 @@
 import './Portfolio.css';
-import Footer from '../../Footer/Footer';
 
 const Portfolio = () => {
   return (
@@ -19,7 +18,6 @@ const Portfolio = () => {
           <p className='portfolio__group-link'>↗</p>
         </a>
       </nav>
-      <Footer />
     </section>
   );
 };

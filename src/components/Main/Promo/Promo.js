@@ -1,12 +1,10 @@
 import React from 'react';
 import './Promo.css';
-import Header from '../../Header/Header';
 import img from '../../../images/text__COLOR_landing-logo.svg';
 
 const Promo = () => {
   return (
     <section className="promo">
-      <Header />
       <div className='promo__container'>
         <div className='promo__text-group'>
           <article className="promo__group-article">
