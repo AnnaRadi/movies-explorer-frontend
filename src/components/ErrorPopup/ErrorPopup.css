@@ -1,0 +1,24 @@
+.errPopup {
+    background: #ee3465;
+    justify-content: left;
+    color: #fff;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    max-width: 50%;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
+    border-radius: 0.5rem;
+    transition: opacity 5s ease;
+  }
+  .errPopup__img {
+    width: 20px;
+  }
+  
+  .errPopup__message {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+  }

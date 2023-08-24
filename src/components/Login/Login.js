@@ -1,53 +1,61 @@
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useContext } from 'react';
 
 import './Login.css';
 import '../Header/Header.css';
 import headerLogo from '../../images/logo.svg';
+import useFormValidation from '../../utils/useFormValidation';
+import {CurrentUserContext} from '../../context/CurrentUserContext';
 
-const Login = () => {
-    const
-        { register,
-            formState: { errors },
-            handleSubmit } = useForm({ mode: 'onBlur' });
-    const onSubmit = (data) => console.log(data);
+const Login = ({ onSignIn, errMessage, setErrAuthMessage }) => {
+    const { values, handleChange, errs, isValid, resetForm } = useFormValidation();
+    const { isRegistring } = useContext(CurrentUserContext);
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        onSignIn(values.email, values.password, resetForm);
+    };
+
+    const changeInput = (evt) => {
+        setErrAuthMessage('');
+        handleChange(evt);
+    };
 
     return (
         <main className="login">
             <section className="login__container">
-            <Link to="/" className="register__container-logo">
-                <img src={headerLogo} className="login__logo" alt="Logo" />
-            </Link>
+                <Link to="/" className="register__container-logo">
+                    <img src={headerLogo} className="login__logo" alt="Logo" />
+                </Link>
                 <h2 className="login__container-title">Рады Видеть!</h2>
-                <form className="login__container-form" onSubmit={handleSubmit(onSubmit)} action='submit'>
+                <form className="login__container-form" onSubmit={handleSubmit}>
                     <label htmlFor="email" className="login__label">E-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Введите вашу почту"
-                        className="login__input" 
-                        {...register('email', {
-                            required: { value: true, message: 'Это поле необходимо заполнить' },
-                            pattern: {
-                                value:
-                                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                message: 'Пожалуйста, укажите корректный электронный адрес',
-                            },
-                        })} />
-                    <span className='errors'>{console.log(errors?.email?.message)}</span>
+                    <input type="email" id="email" name="email" placeholder="Введите вашу почту" minLength='4'
+                        required
+                        className={`login__input ${errs.email && 'login__input_error'}`}
+                        value={values.email || ''}
+                        pattern='^\S+@\S+\.\S+$'
+                        title='Некорректный email'
+                        onChange={changeInput}/>
+                    <span className="login__error-message_first">{errs.email}</span>
                     <label htmlFor="password" className="login__label">Пароль</label>
-                    <input type="password" id="password" name="password" placeholder="Введите ваш пароль"
-                        className="login__input" 
-                        {...register('password', {
-                            required: 'Это поле необходимо заполнить',
-                            minLength: {
-                                value: 6,
-                                message: 'Пароль должен состоять минимум из 6 символов',
-                            },
-                            maxLength: {
-                                value: 30,
-                                message: 'Имя должно состоять максимум из 30 символов',
-                            },
-                        })} />
-                    <span className='errors'>{console.log(errors?.password?.message)}</span>
-                    <button type="button" className="login__button-signin" aria-label="Войти">Войти</button>
+                    <input type="password" id="password" name="password" placeholder="Введите ваш пароль" minLength='6'
+                        maxLength='30'
+                        required
+                        className={`login__input ${errs.password && 'login__input_error'}`}
+                        value={values.password || ''}
+                        onChange={changeInput} />
+                    <span className='login__error-message'>{errs.password}</span>
+                    <button
+                        disabled={!isValid || errMessage || isRegistring}
+                        className={`login__button-signin ${!isValid || errMessage ? 'login__button-signin_disabled' : ''
+                            }`}
+                        type='submit'
+                        aria-label="Войти"
+                    >
+                        {isRegistring ? 'Вход...' : 'Войти'}
+                    </button>
+
                 </form>
                 <p className="login__question">Еще не зареристрированы?
                     <a className="login__container-link" href="/signup">Регистрация</a></p>

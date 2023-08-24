@@ -2,7 +2,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
     border: none;
-    -webkit-text-fill-color: #2F2F2F;
+    -webkit-text-fill-color: #8B8B8B;
     -webkit-box-shadow: 0 0 0px 1000px #2F2F2F inset;
     transition: background-color 5000s ease-in-out 0s;
 }
@@ -53,7 +53,7 @@ input:-webkit-autofill:focus {
     width: 100%;
     height: 46px;
     border: none;
-    margin: 0 0 20px 0;
+    margin: 0 0 0 0;
     color: #fff;
     font-size: 13px;
     font-weight: 500;
@@ -70,9 +70,11 @@ input:-webkit-autofill:focus {
   }
 
 .login__input:last-of-type {
-    margin: 0 0 179px 0;
     color: #EE3465;
+}
 
+.login__input_error {
+    color: #ee3465;
 }
 
 .login__button-signin {
@@ -84,6 +86,12 @@ input:-webkit-autofill:focus {
     margin: 0 0 16px;
     border: none;
 }
+
+.login__button-signin_disabled {
+    background: #f8f8f8;
+    color: #c2c2c2;
+    cursor: default;
+  }
 
 .login__question {
     display: flex;
@@ -102,6 +110,26 @@ input:-webkit-autofill:focus {
     font-size: 14px;
     font-weight: 400;
     text-decoration: none;
+}
+
+.login__error-message {
+    text-align: start;
+    margin: 10px 0 170px 0;
+    display: block;
+    color: #EE3465;
+    font-size: 11px;
+}
+
+.login__error-message_first {
+    text-align: start;
+    margin: 10px 0 10px 0;
+    display: block;
+    color: #EE3465;
+    font-size: 11px;
+}
+
+.login__input_warning {
+    color: #ee3465;
 }
 
 
@@ -141,7 +169,10 @@ input:-webkit-autofill:focus {
     }
 
     .login__input:last-of-type {
-        margin: 0 0 267px 0;
+        margin: 0;
 
+    }
+    .login__error-message {
+        margin: 10px 0 255px 0;
     }
 }

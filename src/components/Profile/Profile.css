@@ -26,7 +26,16 @@
     border: none;
     width: 122px;
     height: 14px;
+    text-align: end;
 }
+
+.profile__container_label_error {
+    color: #fff;
+}
+
+.profile__container_label_error:focus {
+    outline: 1px #ee3465 solid;
+  }
 
 .profile__container_label:focus {
     border-radius: 2px;
@@ -92,9 +101,22 @@
 }
 
 .profile__msg-error {
-    color: #fff;
+    color: #EE3465;
     font-size: 13px;
     font-weight: 400;
+}
+
+.profile__field-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.profile__container-errs {
+    color: #EE3465;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 5px 0 0 0;
 }
 
 .profile__save-button {
@@ -105,6 +127,7 @@
     font-size: 13px;
     font-weight: 400;
     width: 100%;
+    height: 45px;
 }
 
 .profile__save-button:hover {
