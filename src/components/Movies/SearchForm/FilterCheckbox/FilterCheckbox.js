@@ -1,6 +1,6 @@
 import './FilterCheckbox.css'
 
-const FilterCheckbox = ({ onCheckboxChange, isShortMovieChecked }) => {
+const FilterCheckbox = ({ onCheckboxChange, isTimeMovieChecked }) => {
 
   const handleChange = (evt) => onCheckboxChange(evt.target.checked);
 
@@ -9,7 +9,7 @@ const FilterCheckbox = ({ onCheckboxChange, isShortMovieChecked }) => {
       <label className="searchForm__tumbler">
         <input className="searchForm__checkbox-check"  type="checkbox"
             onChange={handleChange}
-            checked={isShortMovieChecked} />
+            checked={isTimeMovieChecked} />
         <span className="searchForm__slider" />
       </label>
       <p className="searchForm__film">Короткометражки</p>

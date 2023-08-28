@@ -114,7 +114,6 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
               </button>
               <button type='button'
                 className='profile__button-exit'
-                href='/signout'
                 aria-label='Выйти из аккаунта'
                 onClick={onSignOut}
                 disabled={isRegistring}>

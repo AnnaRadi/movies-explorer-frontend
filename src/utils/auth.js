@@ -48,7 +48,7 @@ function signin(email, password) {
 };
 
 function signout() {
-  return fetch(`${MainApi_URL}}/logout`, {
+  return fetch(`${MainApi_URL}/logout`, {
     method: 'POST',
     ...properties,
   })

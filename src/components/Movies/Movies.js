@@ -31,7 +31,7 @@ const Movies = ({ showError, onDelete }) => {
     setIsRegistring(true);
     Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
       .then(([moviesData, savedMovies]) => {
-        const moviesWithSavedFlag = moviesData.map((movie) => {
+        const moviesSaved = moviesData.map((movie) => {
           const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
           return {
             ...movie,
@@ -39,7 +39,7 @@ const Movies = ({ showError, onDelete }) => {
             _id: savedMovie ? savedMovie._id : null,
           };
         });
-        setMovies(moviesWithSavedFlag);
+        setMovies(moviesSaved);
       })
       .catch((err) => {
         showError(`'Ошибка:' ${err}`);
@@ -71,22 +71,22 @@ const Movies = ({ showError, onDelete }) => {
   }, []);
 
   useEffect(() => {
-    const updatedMovies = filteredMovies.map((filteredMovie) => {
-      const correspondingMovie = movies.find((movie) => movie.id === filteredMovie.id);
-      if (correspondingMovie) {
+    const updatedAllMovies = filteredMovies.map((filteredMovie) => {
+      const respondMovie = movies.find((movie) => movie.id === filteredMovie.id);
+      if (respondMovie) {
         return {
           ...filteredMovie,
-          isSaved: correspondingMovie.isSaved || false,
-          _id: correspondingMovie._id || null,
+          isSaved: respondMovie.isSaved || false,
+          _id: respondMovie._id || null,
         };
       } else {
         return filteredMovie;
       }
     });
-    setFilteredMovies(updatedMovies);
+    setFilteredMovies(updatedAllMovies);
   }, [movies]);
 
-  const handleSaveButtonClick = (movie) => {
+  const handleSaveClick = (movie) => {
     mainApi
       .addMovie(movie)
       .then((addedMovie) => {
@@ -125,8 +125,8 @@ const Movies = ({ showError, onDelete }) => {
   const handleFilter = (check) => {
     setIsNotFound(false);
     if (!searchAllMovies && filteredMovies.length === 0) return;
-    const filtered = updateFiltered(movies, searchAllMovies, check);
-    return filtered.length > 0 ? setFilteredMovies(filtered) : setIsNotFound(true);
+    const filter = updateFiltered(movies, searchAllMovies, check);
+    return filter.length > 0 ? setFilteredMovies(filter) : setIsNotFound(true);
   };
 
   const handleTimeMovieChange = (check) => {
@@ -145,8 +145,8 @@ const Movies = ({ showError, onDelete }) => {
   };
 
   const handleLoadMore = () => {
-    const newRepresendCount = represendMoviesCount + screenSize.addCardsNumber;
-    setRepresendMoviesCoun(newRepresendCount);
+    const newCount = represendMoviesCount + screenSize.addCardsNumber;
+    setRepresendMoviesCoun(newCount);
   };
 
   return (
@@ -165,7 +165,7 @@ const Movies = ({ showError, onDelete }) => {
             searchErr={searchErr}
             isNotFound={isNotFound}
             isRegistring={isRegistring}
-            onSave={handleSaveButtonClick}
+            onSave={handleSaveClick}
             onDelete={handleDeleteCard}
           />
           {filteredMovies.length > represendMoviesCount && (
