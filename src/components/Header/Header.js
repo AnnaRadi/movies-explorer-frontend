@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from "react-router-dom";
 import headerLogo from '../../images/logo.svg';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../Main/NavTab/NavTab';
-import { authPages } from '../../utils/constants';
+// import { authPages } from '../../utils/constants';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+
 import './Header.css';
 
 const Header = ({ backgroundColor }) => {
   const headerStyle = {
     backgroundColor: backgroundColor,
   };
-  const location = useLocation();
-  const isAuthPage = authPages.includes(location.pathname);
+  // const location = useLocation();
+  // const isAuthPage = authPages.includes(location.pathname);
+
+  const { loggedIn } = useContext(CurrentUserContext);
 
   return (
     <header style={headerStyle} className="header">
@@ -20,7 +24,7 @@ const Header = ({ backgroundColor }) => {
         <Link to="/" className="header__container-logo">
           <img src={headerLogo} className="header__logo" alt="Logo" />
         </Link>
-        {isAuthPage ? <Navigation /> : <NavTab />}
+        {loggedIn ? <Navigation /> : <NavTab />}
       </div>
     </header>
   );
