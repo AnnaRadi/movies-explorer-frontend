@@ -98,9 +98,7 @@ function App() {
 
   function handleChangeUser(newUser) {
     setIsRegistring(true);
-    console.log(newUser)
     mainApi.updateUser(newUser)
-    console.log(newUser)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         showMessage('Редактирование завершено')
@@ -114,6 +112,14 @@ function App() {
       })
       .finally(() => setIsRegistring(false));
   }
+  const handleDeleteButtonClick = (movieId) => {
+    mainApi
+      .deleteMovie(movieId)
+      .then(() => {})
+      .catch((error) => {
+        showError(error);
+      });
+  };
 
   return (
     <div className="page">
@@ -121,10 +127,11 @@ function App() {
         <Routes>
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Main />} />
-          <Route path="/signup" element={<AuthElement element={Register} loggedIn={loggedIn}
+          <Route path="/signup" element={<AuthElement element={Register} 
             onSignUp={handleSignUp} errorMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
-          <Route path="/signin" element={<AuthElement element={Login} loggedIn={loggedIn} onSignIn={handleSignIn}
+          <Route path="/signin" element={<AuthElement element={Login} 
+          loggedIn={loggedIn} onSignIn={handleSignIn}
             errorMessage={errAuthMessage} setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}
             onSignOut={handleSignOut}
@@ -132,8 +139,12 @@ function App() {
             errMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
 
-          <Route path='/movies' element={<ProtectedRouteElement element={Movies}/>}/>
-          <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} />} />
+          <Route path='/movies' element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} 
+          showError={showError}
+          onDelete={handleDeleteButtonClick}/>}/>
+          <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} 
+          loggedIn={loggedIn} showError={showError}
+          onDelete={handleDeleteButtonClick}/>} />
         </Routes>
         <ErrPopup errMessage={errMessage} />
         <PopupInfo infMessage={infMessage} />

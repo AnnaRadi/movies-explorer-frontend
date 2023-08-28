@@ -1,4 +1,5 @@
 import imgPopup from '../../images/img_popup.svg';
+import './PopupInfo.css';
 
 export default function PopupInfo({ infMessage }) {
   return (

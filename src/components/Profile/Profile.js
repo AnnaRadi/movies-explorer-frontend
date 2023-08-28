@@ -89,13 +89,12 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
                   <span className='profile__container-errs'>{errs.email}</span>
               </div>) : (<span className='profile__container-value'>{email}</span>)}
           </div>
-        </form>
         {isEdit ? (
           <>
             <div className='profile__button'>
               <span className='profile__msg-error'>{errMessage}</span>
               <button
-                type='button'
+                type='submit'
                 className={`profile__save-button ${!isValid || errMessage ? 'profile__save-button_disabled' : ''}`}
                 disabled={!isValid || errMessage || isRegistring}
                 aria-label='Сохранить'>
@@ -106,14 +105,14 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
         ) : (
           <>
             <div className='profile__button'>
-              <button type='submit'
+              <button type='button'
                 className='profile__button-edit'
                 href='/'
                 onClick={handleEditClick}
                 aria-label='Редактировать профиль'>
                 Редактировать
               </button>
-              <button type='submit'
+              <button type='button'
                 className='profile__button-exit'
                 href='/signout'
                 aria-label='Выйти из аккаунта'
@@ -124,6 +123,7 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
             </div>
           </>
         )}
+        </form>
       </main>
     </>
   )

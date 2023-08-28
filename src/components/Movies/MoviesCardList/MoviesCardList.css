@@ -8,6 +8,25 @@
   margin: 0 auto;
 }
 
+.moviescards__error {
+  margin: 0;
+  color: #ff004d;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.moviescards__not-found {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+
 .moviesCards {
   list-style: none;
   padding: 0;

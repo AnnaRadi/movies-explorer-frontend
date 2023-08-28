@@ -1,33 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 // import filmList from "../../utils/filmListSaved.json";
 import Header from '../Header/Header'
 import SeachForm from '../Movies/SearchForm/SearchForm'
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
+import mainApi from '../../utils/MainApi';
+import FilterCheckbox from '../Movies/SearchForm/FilterCheckbox/FilterCheckbox';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { updateFiltered } from '../../utils/utils';
+
 import './SavedMovies.css'
 
-const SavedMovies = ({ savedMovies, onSubmit, onDelete, errMessage }) => {
-  const [isShortFilm, setIsShortFilm] = useState(
-    () => localStorage.getItem('isShortSavedFilm') === 'true'
-  );
+const SavedMovies = ({ onDelete, showError }) => {
+  const [savedMovies, setSavedMovie] = useState([]);
+  const { isRegistring, setIsRegistring } = useContext(CurrentUserContext);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [isTimeMovieChecked, setIsTimeMovieChecked] = useState(false);
+  const [searchAllMovies, setSearchAllMovies] = useState('');
+  const [isNotFound, setIsNotFound] = useState(false);
+  const [searchErr, setSearchErr] = useState(false);
 
-  const filteredMovies = isShortFilm
-  ? savedMovies.filter((movie) => movie.duration < 40)
-  : savedMovies;
+  const deleteCard = (movieId) => {
+    onDelete(movieId);
+    setSavedMovie((prev) => prev.filter((movie) => movie._id !== movieId));
+    setFilteredMovies((prev) => prev.filter((movie) => movie._id !== movieId));
+  };
 
-  const handleShortFilmClick = () => {
-    const newIsShortFilm = !isShortFilm;
-    setIsShortFilm(newIsShortFilm);
-    localStorage.setItem('isShortSavedFilm', newIsShortFilm);
+  useEffect(() => {
+    setIsRegistring(true);
+    mainApi
+      .getMovies()
+      .then((movies) => {
+        setSavedMovie(movies);
+        setFilteredMovies(movies);
+      })
+      .catch((err) => {
+        showError(`'Ошибка:' ${err}`);
+      })
+      .finally(() => {
+        setIsRegistring(false);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleFilter = (check) => {
+    setIsNotFound(false);
+    if (!searchAllMovies && filteredMovies.length === 0) return;
+    const filtered = updateFiltered(savedMovies, searchAllMovies, check);
+    return filtered.length > 0 ? setFilteredMovies(filtered) : setIsNotFound(true);
+  };
+
+  const changeTimeMovie = (check) => {
+    setIsTimeMovieChecked(check);
+    handleFilter(check);
+  };
+
+  const handleSearch = () => {
+    setFilteredMovies([]);
+    setSearchErr(false);
+    if (!searchAllMovies) {
+      setSearchErr(true);
+      return;
+    }
+    handleFilter(isTimeMovieChecked, searchAllMovies);
   };
 
   return (
     <>
       <Header backgroundColor="#202020" theme={{ default: false }} />
       <main className="savedMovies">
-        <SeachForm   onSubmit={onSubmit}    isShortFilm={isShortFilm} shortFilmsClick={handleShortFilmClick}/>
-        <MoviesCardList savedMovies={filteredMovies} onDelete={onDelete} errMessage={errMessage}/>
+        <SeachForm  
+          searchQuery={searchAllMovies}
+          onSearch={handleSearch}
+          setIsTimeMovieChecked={setIsTimeMovieChecked}
+          setSearchAllMovies={setSearchAllMovies}/>
+        <FilterCheckbox onCheckboxChange={changeTimeMovie} isTimeMovieChecked={isTimeMovieChecked} />
+        <MoviesCardList 
+          isNotFound={isNotFound}
+          onDelete={deleteCard}
+          searchErr={searchErr}
+          isRegistring={isRegistring}
+          movies={filteredMovies}/>
       </main>
       <Footer />
     </>

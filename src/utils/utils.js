@@ -1,8 +1,6 @@
-import { SCREEN_SIZE_MAP } from './constants';
+import { ScreenSize_Map } from './constants';
 
-import { SHORT_FILM_DURATION } from './constants';
-
-const updateFilteredMovies = (movies, query, checked) => {
+const updateFiltered = (movies, query, checked) => {
   let filteredResults = [];
 
   filteredResults = movies.filter(
@@ -11,28 +9,22 @@ const updateFilteredMovies = (movies, query, checked) => {
       movie.nameEN.toLowerCase().includes(query.toLowerCase()),
   );
   if (checked) {
-    filteredResults = filteredResults.filter((movie) => movie.duration <= SHORT_FILM_DURATION);
+    filteredResults = filteredResults.filter((movie) => movie.duration <= 40);
   }
 
   return filteredResults;
 };
 
-const findScreenSize = (screenWidth) => {
+const findScreenSizeMap = (screenWidth) => {
   if (screenWidth >= 1200) {
-    return SCREEN_SIZE_MAP.xl;
+    return ScreenSize_Map.xl;
   } else if (screenWidth >= 900) {
-    return SCREEN_SIZE_MAP.lg;
+    return ScreenSize_Map.lg;
   } else if (screenWidth >= 600) {
-    return SCREEN_SIZE_MAP.md;
+    return ScreenSize_Map.md;
   } else {
-    return SCREEN_SIZE_MAP.sm;
+    return ScreenSize_Map.sm;
   }
 };
 
-const convertDuration = (number) => {
-  const hours = Math.floor(number / 60);
-  const minutes = number % 60;
-  return `${hours}ч ${minutes}м`;
-};
-
-export { updateFilteredMovies, findScreenSize, convertDuration };
+export { updateFiltered, findScreenSizeMap };
