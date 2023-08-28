@@ -23,7 +23,7 @@ import './App.css';
 function App() {
 
   const [currentUser, setCurrentUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isRegistring, setIsRegistring] = useState(false);
   const [errAuthMessage, setErrAuthMessage] = useState('');
   const [infMessage, showMessage] = useMessage();
@@ -34,17 +34,24 @@ function App() {
     if (loggedIn) {
       auth.checkToken()
         .then((res) => {
-          setLoggedIn(true);
           setCurrentUser(res);
+        })
+        .catch((err) => {
+          console.log(err)
+        });
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    auth.checkToken()
+        .then(() => {
+          setLoggedIn(true);
         })
         .catch((err) => {
           console.log(err)
           setLoggedIn(false);
         });
-    }
-  }, [loggedIn]);
-
-  console.log(currentUser)
+  },[])
 
   const handleAuth = (user, resetForm) => {
     setErrAuthMessage('');
@@ -115,7 +122,7 @@ function App() {
   const handleDeleteButtonClick = (movieId) => {
     mainApi
       .deleteMovie(movieId)
-      .then(() => {})
+      .then(() => { })
       .catch((error) => {
         showError(error);
       });
@@ -127,11 +134,11 @@ function App() {
         <Routes>
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Main />} />
-          <Route path="/signup" element={<AuthElement element={Register} 
+          <Route path="/signup" element={<AuthElement element={Register}
             onSignUp={handleSignUp} errorMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
-          <Route path="/signin" element={<AuthElement element={Login} 
-          loggedIn={loggedIn} onSignIn={handleSignIn}
+          <Route path="/signin" element={<AuthElement element={Login}
+            loggedIn={loggedIn} onSignIn={handleSignIn}
             errorMessage={errAuthMessage} setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}
             onSignOut={handleSignOut}
@@ -139,12 +146,12 @@ function App() {
             errMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
 
-          <Route path='/movies' element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} 
-          showError={showError}
-          onDelete={handleDeleteButtonClick}/>}/>
-          <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies} 
-          loggedIn={loggedIn} showError={showError}
-          onDelete={handleDeleteButtonClick}/>} />
+          <Route path='/movies' element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn}
+            showError={showError}
+            onDelete={handleDeleteButtonClick} />} />
+          <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies}
+            loggedIn={loggedIn} showError={showError}
+            onDelete={handleDeleteButtonClick} />} />
         </Routes>
         <ErrPopup errMessage={errMessage} />
         <PopupInfo infMessage={infMessage} />

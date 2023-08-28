@@ -94,10 +94,10 @@ const Movies = ({ showError, onDelete }) => {
           prevMovies.map((film) =>
             film.id === addedMovie.movieId
               ? {
-                  ...film,
-                  isSaved: true,
-                  _id: addedMovie._id,
-                }
+                ...film,
+                isSaved: true,
+                _id: addedMovie._id,
+              }
               : film,
           ),
         );
@@ -113,10 +113,10 @@ const Movies = ({ showError, onDelete }) => {
       prev.map((film) =>
         film._id === movieId
           ? {
-              ...film,
-              isSaved: false,
-              _id: null,
-            }
+            ...film,
+            isSaved: false,
+            _id: null,
+          }
           : film,
       ),
     );
@@ -154,12 +154,12 @@ const Movies = ({ showError, onDelete }) => {
       <Header backgroundColor="#202020" theme={{ default: false }} />
       <main>
         <SeachForm setSearchAllMovies={setSearcAllhMovies}
-         onSearch={handleSearch}
-         searchAllMovies={searchAllMovies}
-         setIsTimeMovieChecked={setIsTimeMovieChecked}/>
-          <FilterCheckbox onCheckboxChange={handleTimeMovieChange} 
+          onSearch={handleSearch}
+          searchAllMovies={searchAllMovies}
+          setIsTimeMovieChecked={setIsTimeMovieChecked} />
+        <FilterCheckbox onCheckboxChange={handleTimeMovieChange}
           isTimeMovieChecked={isTimeMovieChecked} />
-          <section className="moviescards">
+        <section className="moviescards">
           <MoviesCardList
             movies={moviesShow}
             searchErr={searchErr}

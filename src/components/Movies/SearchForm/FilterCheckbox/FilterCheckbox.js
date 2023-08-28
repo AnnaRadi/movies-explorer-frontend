@@ -7,9 +7,9 @@ const FilterCheckbox = ({ onCheckboxChange, isTimeMovieChecked }) => {
   return (
     <section className="searchForm__checkbox">
       <label className="searchForm__tumbler">
-        <input className="searchForm__checkbox-check"  type="checkbox"
-            onChange={handleChange}
-            checked={isTimeMovieChecked} />
+        <input className="searchForm__checkbox-check" type="checkbox"
+          onChange={handleChange}
+          checked={isTimeMovieChecked} />
         <span className="searchForm__slider" />
       </label>
       <p className="searchForm__film">Короткометражки</p>

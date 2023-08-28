@@ -14,8 +14,8 @@ class MoviesApi {
     } else if (res.status === 500) {
       return Promise.reject('Ошибка');
     } else {
-    return Promise.reject(res.status);
-  }
+      return Promise.reject(res.status);
+    }
   }
 
   getMovies() {
@@ -27,7 +27,7 @@ class MoviesApi {
 }
 
 export const moviesApi = new MoviesApi({
-  baseUrl:  MoviesApi_URL,
+  baseUrl: MoviesApi_URL,
   headers: {
     'Content-Type': 'application/json',
   },

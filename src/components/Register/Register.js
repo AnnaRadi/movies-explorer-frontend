@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import './Register.css';
 import headerLogo from '../../images/logo.svg';
-import {CurrentUserContext} from '../../context/CurrentUserContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import useFormValidation from '../../utils/useFormValidation';
 
 

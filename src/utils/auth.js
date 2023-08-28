@@ -15,7 +15,7 @@ function signup(name, email, password) {
   })
     .then((res) => {
       if (res.status === 200) {
-       return res.json();
+        return res.json();
       }
       if (res.status === 409) {
         return Promise.reject('Email уже зарегестрирован');
@@ -33,18 +33,18 @@ function signin(email, password) {
     ...properties,
     body: JSON.stringify({ email, password }),
   })
-  .then((res) => {
-    if (res.status === 200) {
-      return res.json();
-    }
-    if (res.status === 401) {
-      return Promise.reject('Введены некорректные данные');
-    }
+    .then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      }
+      if (res.status === 401) {
+        return Promise.reject('Введены некорректные данные');
+      }
       if (res.status === 500) {
         return Promise.reject('Ошибка на сервере');
       }
-    return Promise.reject('Ошибка регистрации');
-  });
+      return Promise.reject('Ошибка регистрации');
+    });
 };
 
 function signout() {
@@ -71,8 +71,8 @@ function checkToken() {
     method: 'GET',
     ...properties,
   })
-  .then((res) => res.json())
-  .then((data) => data);
+    .then((res) => res.json())
+    .then((data) => data);
 };
 
-export {signup, signin, signout, checkToken}
+export { signup, signin, signout, checkToken }

@@ -6,7 +6,7 @@ export const useError = () => {
   const showError = (message) => {
     setErrMessage(message);
     setTimeout(() => {
-        setErrMessage(null);
+      setErrMessage(null);
     }, 5000);
   };
 

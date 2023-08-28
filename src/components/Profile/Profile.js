@@ -86,42 +86,42 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
                   className={`profile__container-label ${errs.email && 'profile__container_label_error'}`}
                   pattern='^\S+@\S+\.\S+$'
                   title='Некорректный формат' />
-                  <span className='profile__container-errs'>{errs.email}</span>
+                <span className='profile__container-errs'>{errs.email}</span>
               </div>) : (<span className='profile__container-value'>{email}</span>)}
           </div>
-        {isEdit ? (
-          <>
-            <div className='profile__button'>
-              <span className='profile__msg-error'>{errMessage}</span>
-              <button
-                type='submit'
-                className={`profile__save-button ${!isValid || errMessage ? 'profile__save-button_disabled' : ''}`}
-                disabled={!isValid || errMessage || isRegistring}
-                aria-label='Сохранить'>
-                Сохранить
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className='profile__button'>
-              <button type='button'
-                className='profile__button-edit'
-                href='/'
-                onClick={handleEditClick}
-                aria-label='Редактировать профиль'>
-                Редактировать
-              </button>
-              <button type='button'
-                className='profile__button-exit'
-                aria-label='Выйти из аккаунта'
-                onClick={onSignOut}
-                disabled={isRegistring}>
-                Выйти из аккаунта
-              </button>
-            </div>
-          </>
-        )}
+          {isEdit ? (
+            <>
+              <div className='profile__button'>
+                <span className='profile__msg-error'>{errMessage}</span>
+                <button
+                  type='submit'
+                  className={`profile__save-button ${!isValid || errMessage ? 'profile__save-button_disabled' : ''}`}
+                  disabled={!isValid || errMessage || isRegistring}
+                  aria-label='Сохранить'>
+                  Сохранить
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className='profile__button'>
+                <button type='button'
+                  className='profile__button-edit'
+                  href='/'
+                  onClick={handleEditClick}
+                  aria-label='Редактировать профиль'>
+                  Редактировать
+                </button>
+                <button type='button'
+                  className='profile__button-exit'
+                  aria-label='Выйти из аккаунта'
+                  onClick={onSignOut}
+                  disabled={isRegistring}>
+                  Выйти из аккаунта
+                </button>
+              </div>
+            </>
+          )}
         </form>
       </main>
     </>

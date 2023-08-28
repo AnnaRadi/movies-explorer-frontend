@@ -16,8 +16,8 @@ const MoviesCardList = ({ movies, searchErr, isRegistring, isNotFound, onSave, o
         {!isRegistring && !searchErr && !isNotFound && (
           <ul className='moviesCards'>
             {movies.map((movie) => (
-              <MoviesCard key={movie.id || movie.movieId} movie={movie} onSave={onSave} 
-              onDelete={onDelete} />
+              <MoviesCard key={movie.id || movie.movieId} movie={movie} onSave={onSave}
+                onDelete={onDelete} />
             ))}
           </ul>
         )}

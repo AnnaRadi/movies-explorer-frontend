@@ -70,18 +70,18 @@ const SavedMovies = ({ onDelete, showError }) => {
     <>
       <Header backgroundColor="#202020" theme={{ default: false }} />
       <main className="savedMovies">
-        <SeachForm  
+        <SeachForm
           searchQuery={searchAllMovies}
           onSearch={handleSearch}
           setIsTimeMovieChecked={setIsTimeMovieChecked}
-          setSearchAllMovies={setSearchAllMovies}/>
+          setSearchAllMovies={setSearchAllMovies} />
         <FilterCheckbox onCheckboxChange={changeTimeMovie} isTimeMovieChecked={isTimeMovieChecked} />
-        <MoviesCardList 
+        <MoviesCardList
           isNotFound={isNotFound}
           onDelete={deleteCard}
           searchErr={searchErr}
           isRegistring={isRegistring}
-          movies={filteredMovies}/>
+          movies={filteredMovies} />
       </main>
       <Footer />
     </>
