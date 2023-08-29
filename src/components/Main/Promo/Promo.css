@@ -40,12 +40,16 @@
 }
 
 .promo__button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     border-radius: 3px;
     margin: 83px 0 0 0;
     border: 1px solid rgba(255, 255, 255, 0.6);
     color: #FFF;
-    width: 129px;
-    height: 36px;
+    width: 127px;
+    height: 34px;
     background-color: inherit;
     font-size: 12px;
     cursor: pointer;

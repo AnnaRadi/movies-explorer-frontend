@@ -2,9 +2,9 @@ import './AboutProject.css'
 
 const AboutProject = () => {
   return (
-    <section className='aboutProject'>
+    <section className='aboutProject' id='scroll'>
       <div className='aboutProject__group-title'>
-        <h3 className='aboutProject__title'>О проекте</h3>
+        <h3 className='aboutProject__title' >О проекте</h3>
       </div>
       <ul className='aboutProject__text-group'>
         <li className='aboutProject__text-group-title'>

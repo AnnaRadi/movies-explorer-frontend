@@ -3,6 +3,7 @@ import './Promo.css';
 import img from '../../../images/text__COLOR_landing-logo.svg';
 
 const Promo = () => {
+  
   return (
     <section className="promo">
       <div className='promo__container'>
@@ -13,7 +14,7 @@ const Promo = () => {
           </article>
           <img src={img} className="promo__img" alt="мир" />
         </div>
-        <button className="promo__button" href="#about-project">Узнать больше</button>
+        <a className="promo__button" href="#scroll" >Узнать больше</a>
       </div>
     </section>
   );
