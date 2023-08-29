@@ -7,10 +7,10 @@ import Portfolio from './Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-const Main = ({loggedIn}) => {
+const Main = () => {
   return (
     <>
-    <Header backgroundColor="#073042" theme={{ default: false }} loggedIn={loggedIn} />
+    <Header backgroundColor="#073042" theme={{ default: false }} />
       <main>
         <Promo />
         <AboutProject />

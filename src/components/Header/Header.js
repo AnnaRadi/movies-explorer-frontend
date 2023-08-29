@@ -1,18 +1,18 @@
-// import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
 import headerLogo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../Main/NavTab/NavTab';
-// import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 import './Header.css';
 
-const Header = ( {loggedIn,backgroundColor }) => {
+const Header = ( {backgroundColor}) => {
   const headerStyle = {
     backgroundColor: backgroundColor,
   };
 
-  // const { loggedIn } = useContext(CurrentUserContext);
+  const { loggedIn } = useContext(CurrentUserContext);
 
   return (
     <header style={headerStyle} className="header">

@@ -2,6 +2,7 @@ import { MainApi_URL } from './constants';
 
 const properties = {
   headers: {
+    Accept: "application/json",
     'Content-Type': 'application/json',
   },
   credentials: 'include',
@@ -70,9 +71,13 @@ function checkToken() {
   return fetch(`${MainApi_URL}/users/me`, {
     method: 'GET',
     ...properties,
-  })
-    .then((res) => res.json())
-    .then((data) => data);
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return res.json().then((data) => Promise.reject(data.message));
+    }
+  });
 };
 
 export { signup, signin, signout, checkToken }

@@ -47,8 +47,7 @@ function App() {
       .then(() => {
         setLoggedIn(true);
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
         setLoggedIn(false);
       });
   }, [])
@@ -133,7 +132,7 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser, loggedIn, isRegistring, setIsRegistring }}>
         <Routes>
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={<Main loggedIn={loggedIn} />} />
+          <Route path="/" element={<Main/>} />
           <Route path="/signup" element={<AuthElement element={Register}
             loggedIn={loggedIn} 
             onSignUp={handleSignUp} errorMessage={errAuthMessage}
