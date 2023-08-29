@@ -119,12 +119,7 @@ function App() {
       .finally(() => setIsRegistring(false));
   }
   const handleDeleteButtonClick = (movieId) => {
-    mainApi
-      .deleteMovie(movieId)
-      .then(() => { })
-      .catch((error) => {
-        showError(error);
-      });
+    return mainApi.deleteMovie(movieId);
   };
 
   return (
@@ -132,13 +127,13 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser, loggedIn, isRegistring, setIsRegistring }}>
         <Routes>
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={<Main/>} />
+          <Route path="/" element={<Main />} />
           <Route path="/signup" element={<AuthElement element={Register}
-            loggedIn={loggedIn} 
+            loggedIn={loggedIn}
             onSignUp={handleSignUp} errorMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/signin" element={<AuthElement element={Login}
-            loggedIn={loggedIn} 
+            loggedIn={loggedIn}
             onSignIn={handleSignIn}
             errorMessage={errAuthMessage} setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/profile" element={<ProtectedRouteElement element={Profile}
@@ -152,7 +147,7 @@ function App() {
             showError={showError}
             onDelete={handleDeleteButtonClick} />} />
           <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies}
-            loggedIn={loggedIn} 
+            loggedIn={loggedIn}
             showError={showError}
             onDelete={handleDeleteButtonClick} />} />
         </Routes>

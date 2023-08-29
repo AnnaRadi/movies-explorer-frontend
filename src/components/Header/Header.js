@@ -7,7 +7,7 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 import './Header.css';
 
-const Header = ( {backgroundColor}) => {
+const Header = ({ backgroundColor }) => {
   const headerStyle = {
     backgroundColor: backgroundColor,
   };

@@ -108,18 +108,18 @@ const Movies = ({ showError, onDelete }) => {
   };
 
   function handleDeleteCard(movieId) {
-    onDelete(movieId);
-    setMovies((prev) =>
-      prev.map((film) =>
-        film._id === movieId
-          ? {
-            ...film,
-            isSaved: false,
-            _id: null,
-          }
-          : film,
-      ),
-    );
+    onDelete(movieId)
+    .then(() => {
+      setMovies((prev) =>
+        prev.map((film) =>
+          film._id === movieId ? 
+          {...film, isSaved: false, _id: null, } : film
+        )
+      );
+    })
+    .catch((err) => {
+      showError(err);
+    });
   }
 
   const handleFilter = (check) => {
@@ -151,7 +151,7 @@ const Movies = ({ showError, onDelete }) => {
 
   return (
     <>
-      <Header backgroundColor="#202020" theme={{ default: false }}/>
+      <Header backgroundColor="#202020" theme={{ default: false }} />
       <main>
         <SeachForm setSearchAllMovies={setSearcAllhMovies}
           onSearch={handleSearch}

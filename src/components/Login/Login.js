@@ -5,7 +5,7 @@ import './Login.css';
 import '../Header/Header.css';
 import headerLogo from '../../images/logo.svg';
 import useFormValidation from '../../utils/useFormValidation';
-import {CurrentUserContext} from '../../context/CurrentUserContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 const Login = ({ onSignIn, errMessage, setErrAuthMessage }) => {
     const { values, handleChange, errs, isValid, resetForm } = useFormValidation();
@@ -36,7 +36,7 @@ const Login = ({ onSignIn, errMessage, setErrAuthMessage }) => {
                         value={values.email || ''}
                         pattern='^\S+@\S+\.\S+$'
                         title='Некорректный email'
-                        onChange={changeInput}/>
+                        onChange={changeInput} />
                     <span className="login__error-message_first">{errs.email}</span>
                     <label htmlFor="password" className="login__label">Пароль</label>
                     <input type="password" id="password" name="password" placeholder="Введите ваш пароль" minLength='6'

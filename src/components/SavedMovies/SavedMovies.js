@@ -12,7 +12,7 @@ import { updateFiltered } from '../../utils/utils';
 
 import './SavedMovies.css'
 
-const SavedMovies = ({ onDelete, showError}) => {
+const SavedMovies = ({ onDelete, showError }) => {
   const [savedMovies, setSavedMovie] = useState([]);
   const { isRegistring, setIsRegistring } = useContext(CurrentUserContext);
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -22,9 +22,14 @@ const SavedMovies = ({ onDelete, showError}) => {
   const [searchErr, setSearchErr] = useState(false);
 
   const deleteCard = (movieId) => {
-    onDelete(movieId);
-    setSavedMovie((prev) => prev.filter((movie) => movie._id !== movieId));
-    setFilteredMovies((prev) => prev.filter((movie) => movie._id !== movieId));
+    onDelete(movieId)
+    .then(() => {
+      setSavedMovie((prev) => prev.filter((movie) => movie._id !== movieId));
+      setFilteredMovies((prev) => prev.filter((movie) => movie._id !== movieId));
+    })
+    .catch((err) => {
+      showError(err);
+    });
   };
 
   useEffect(() => {
@@ -68,7 +73,7 @@ const SavedMovies = ({ onDelete, showError}) => {
 
   return (
     <>
-      <Header backgroundColor="#202020" theme={{ default: false }}/>
+      <Header backgroundColor="#202020" theme={{ default: false }} />
       <main className="savedMovies">
         <SeachForm
           searchQuery={searchAllMovies}

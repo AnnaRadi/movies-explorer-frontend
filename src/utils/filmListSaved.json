@@ -1,21 +1,20 @@
 [
-    {
-  
-      "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/23fff4a5-a498-4be8-b7d6-e833ccc84945/300x450",
-      "name": "Белоснежка и семь гномов",
-      "isSaved": true,
-      "duration": 83
-    },
-    {
-      "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/ed833881-a464-431d-893b-c6f0a58a5b0d/300x450",
-      "name": "Возвращение Джафара",
-      "isSaved": false,
-      "duration": 69
-    },
-    {
-      "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/0d068fcf-b13f-45cd-8f27-a897e47438fd/300x450",
-      "name": "Аладдин",
-      "isSaved": true,
-      "duration": 128
-    }
-  ]
+  {
+    "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/23fff4a5-a498-4be8-b7d6-e833ccc84945/300x450",
+    "name": "Белоснежка и семь гномов",
+    "isSaved": true,
+    "duration": 83
+  },
+  {
+    "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/ed833881-a464-431d-893b-c6f0a58a5b0d/300x450",
+    "name": "Возвращение Джафара",
+    "isSaved": false,
+    "duration": 69
+  },
+  {
+    "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/0d068fcf-b13f-45cd-8f27-a897e47438fd/300x450",
+    "name": "Аладдин",
+    "isSaved": true,
+    "duration": 128
+  }
+]

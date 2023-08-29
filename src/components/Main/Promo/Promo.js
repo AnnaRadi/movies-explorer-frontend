@@ -3,7 +3,7 @@ import './Promo.css';
 import img from '../../../images/text__COLOR_landing-logo.svg';
 
 const Promo = () => {
-  
+
   return (
     <section className="promo">
       <div className='promo__container'>

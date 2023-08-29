@@ -10,7 +10,7 @@ import Footer from '../Footer/Footer';
 const Main = () => {
   return (
     <>
-    <Header backgroundColor="#073042" theme={{ default: false }} />
+      <Header backgroundColor="#073042" theme={{ default: false }} />
       <main>
         <Promo />
         <AboutProject />
