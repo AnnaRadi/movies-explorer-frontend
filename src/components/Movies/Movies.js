@@ -15,7 +15,7 @@ import SeachForm from '../Movies/SearchForm/SearchForm';
 import FilterCheckbox from '../Movies/SearchForm/FilterCheckbox/FilterCheckbox';
 
 
-const Movies = ({ showError, onDelete }) => {
+const Movies = ({ showError, onDelete, loggedIn }) => {
   const [screenSize, setScreenSize] = useState(findScreenSizeMap(window.innerWidth));
   const [movies, setMovies] = useState([]);
   const [isNotFound, setIsNotFound] = useState(false);
@@ -151,7 +151,7 @@ const Movies = ({ showError, onDelete }) => {
 
   return (
     <>
-      <Header backgroundColor="#202020" theme={{ default: false }} />
+      <Header backgroundColor="#202020" theme={{ default: false }} loggedIn={loggedIn}/>
       <main>
         <SeachForm setSearchAllMovies={setSearcAllhMovies}
           onSearch={handleSearch}

@@ -133,27 +133,27 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser, loggedIn, isRegistring, setIsRegistring }}>
         <Routes>
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main loggedIn={loggedIn} />} />
           <Route path="/signup" element={<AuthElement element={Register}
-            // loggedIn={loggedIn} 
+            loggedIn={loggedIn} 
             onSignUp={handleSignUp} errorMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/signin" element={<AuthElement element={Login}
-            // loggedIn={loggedIn} 
+            loggedIn={loggedIn} 
             onSignIn={handleSignIn}
             errorMessage={errAuthMessage} setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/profile" element={<ProtectedRouteElement element={Profile}
-            // loggedIn={loggedIn}
+            loggedIn={loggedIn}
             onSignOut={handleSignOut}
             onChangeUserInfo={handleChangeUser}
             errMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
           <Route path='/movies' element={<ProtectedRouteElement element={Movies}
-            // loggedIn={loggedIn}
+            loggedIn={loggedIn}
             showError={showError}
             onDelete={handleDeleteButtonClick} />} />
           <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies}
-            // loggedIn={loggedIn} 
+            loggedIn={loggedIn} 
             showError={showError}
             onDelete={handleDeleteButtonClick} />} />
         </Routes>

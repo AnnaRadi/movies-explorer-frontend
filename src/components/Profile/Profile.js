@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import useFormValidation from '../../utils/useFormValidation';
 import './Profile.css';
 
-const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage }) => {
+const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage, loggedIn}) => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const { currentUser, isRegistring } = useContext(CurrentUserContext);
@@ -56,7 +56,7 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
 
   return (
     <>
-      <Header backgroundColor="#202020" theme={{ default: false }} />
+      <Header backgroundColor="#202020" theme={{ default: false }} loggedIn={loggedIn}/>
       <main className='profile'>
         <h2 className='profile__title'>Привет, {currentUser?.name}</h2>
         <form className='profile__form' onSubmit={handleSubmit}>
