@@ -109,17 +109,17 @@ const Movies = ({ showError, onDelete }) => {
 
   function handleDeleteCard(movieId) {
     onDelete(movieId)
-    .then(() => {
-      setMovies((prev) =>
-        prev.map((film) =>
-          film._id === movieId ? 
-          {...film, isSaved: false, _id: null, } : film
-        )
-      );
-    })
-    .catch((err) => {
-      showError(err);
-    });
+      .then(() => {
+        setMovies((prev) =>
+          prev.map((film) =>
+            film._id === movieId ?
+              { ...film, isSaved: false, _id: null, } : film
+          )
+        );
+      })
+      .catch((err) => {
+        showError(err);
+      });
   }
 
   const handleFilter = (check) => {

@@ -23,13 +23,13 @@ const SavedMovies = ({ onDelete, showError }) => {
 
   const deleteCard = (movieId) => {
     onDelete(movieId)
-    .then(() => {
-      setSavedMovie((prev) => prev.filter((movie) => movie._id !== movieId));
-      setFilteredMovies((prev) => prev.filter((movie) => movie._id !== movieId));
-    })
-    .catch((err) => {
-      showError(err);
-    });
+      .then(() => {
+        setSavedMovie((prev) => prev.filter((movie) => movie._id !== movieId));
+        setFilteredMovies((prev) => prev.filter((movie) => movie._id !== movieId));
+      })
+      .catch((err) => {
+        showError(err);
+      });
   };
 
   useEffect(() => {
