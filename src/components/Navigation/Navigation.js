@@ -1,12 +1,11 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Link, NavLink } from "react-router-dom";
-import { CurrentUserContext } from '../../context/CurrentUserContext';
+
 import './Navigation.css';
 import img from '../../images/icon__COLOR_icon-main.svg'
 
 function Navigation() {
-  const {currentUser} = useContext(CurrentUserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const burgerMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,7 +23,7 @@ function Navigation() {
           <NavLink to="/saved-movies" className="navigation__moovie">Сохраненные фильмы</NavLink>
         </div>
         <Link to="/profile" className="navigation__container-account">
-          <p className="navigation__title">{currentUser?.name}</p>
+          <p className="navigation__title">Аккаунт</p>
           <div className='navigation__container-img'>
             <img className='navigation__img' src={img} alt='профиль' />
           </div>
