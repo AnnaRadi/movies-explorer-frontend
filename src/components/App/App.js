@@ -44,14 +44,14 @@ function App() {
 
   useEffect(() => {
     auth.checkToken()
-        .then(() => {
-          setLoggedIn(true);
-        })
-        .catch((err) => {
-          console.log(err)
-          setLoggedIn(false);
-        });
-  },[])
+      .then(() => {
+        setLoggedIn(true);
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoggedIn(false);
+      });
+  }, [])
 
   const handleAuth = (user, resetForm) => {
     setErrAuthMessage('');
@@ -135,22 +135,26 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/" element={<Main />} />
           <Route path="/signup" element={<AuthElement element={Register}
+            // loggedIn={loggedIn} 
             onSignUp={handleSignUp} errorMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
           <Route path="/signin" element={<AuthElement element={Login}
-            loggedIn={loggedIn} onSignIn={handleSignIn}
+            // loggedIn={loggedIn} 
+            onSignIn={handleSignIn}
             errorMessage={errAuthMessage} setErrAuthMessage={setErrAuthMessage} />} />
-          <Route path="/profile" element={<ProtectedRouteElement element={Profile} loggedIn={loggedIn}
+          <Route path="/profile" element={<ProtectedRouteElement element={Profile}
+            // loggedIn={loggedIn}
             onSignOut={handleSignOut}
             onChangeUserInfo={handleChangeUser}
             errMessage={errAuthMessage}
             setErrAuthMessage={setErrAuthMessage} />} />
-
-          <Route path='/movies' element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn}
+          <Route path='/movies' element={<ProtectedRouteElement element={Movies}
+            // loggedIn={loggedIn}
             showError={showError}
             onDelete={handleDeleteButtonClick} />} />
           <Route path="/saved-movies" element={<ProtectedRouteElement element={SavedMovies}
-            loggedIn={loggedIn} showError={showError}
+            // loggedIn={loggedIn} 
+            showError={showError}
             onDelete={handleDeleteButtonClick} />} />
         </Routes>
         <ErrPopup errMessage={errMessage} />
