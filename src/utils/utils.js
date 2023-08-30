@@ -1,4 +1,4 @@
-import { ScreenSize_Map } from './constants';
+import { ScreenSizeMap, ShortFilmDuration, MaxScreenSize, MinScreenSize } from './constants';
 
 const updateFiltered = (movies, query, checked) => {
   let filteredResults = [];
@@ -9,22 +9,29 @@ const updateFiltered = (movies, query, checked) => {
       movie.nameEN.toLowerCase().includes(query.toLowerCase()),
   );
   if (checked) {
-    filteredResults = filteredResults.filter((movie) => movie.duration <= 40);
+    filteredResults = filteredResults.filter((movie) => movie.duration <= ShortFilmDuration);
   }
 
   return filteredResults;
 };
 
 const findScreenSizeMap = (screenWidth) => {
-  if (screenWidth >= 1200) {
-    return ScreenSize_Map.xl;
-  } else if (screenWidth >= 900) {
-    return ScreenSize_Map.lg;
-  } else if (screenWidth >= 600) {
-    return ScreenSize_Map.md;
+  if (screenWidth > MaxScreenSize) {
+    return ScreenSizeMap.xl;
+  } else if (screenWidth > MinScreenSize) {
+    return ScreenSizeMap.lg;
   } else {
-    return ScreenSize_Map.sm;
+    return ScreenSizeMap.md;
   }
 };
 
-export { updateFiltered, findScreenSizeMap };
+
+const duration = (number) => {
+  const hours = Math.floor(number / 60);
+  const minutes = number % 60;
+  return `${hours}чч. ${minutes}мин.`;
+};
+
+const ErrorMessage = "Такие данные уже используются";
+
+export { updateFiltered, findScreenSizeMap, ErrorMessage, duration};

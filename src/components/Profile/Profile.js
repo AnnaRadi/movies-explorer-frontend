@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import Header from '../Header/Header';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import useFormValidation from '../../utils/useFormValidation';
+import { ErrorMessage } from '../../utils/utils';
 import './Profile.css';
 
 const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage }) => {
@@ -10,10 +11,10 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
   const { currentUser, isRegistring } = useContext(CurrentUserContext);
   // const isRegistring = false;
   const [isEdit, setIsEdit] = useState(false);
-  const { values, handleChange, errs, isValid } = useFormValidation();
+  const { values, handleChange, errs, isValid, setIsValid } = useFormValidation();
 
-  const updatedName = useRef(name);
-  const updatedEmail = useRef(email);
+  const prevNameRef = useRef(name);
+  const prevEmailRef = useRef(email);
 
   useEffect(() => {
     console.log(currentUser)
@@ -37,8 +38,8 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
   const handleChangeInput = (evt) => {
     setErrAuthMessage('');
     handleChange(evt);
-    if (updatedName === currentUser?.name && updatedEmail === currentUser?.email) {
-      setErrAuthMessage('Скорректируйте данные.');
+    if (prevNameRef.current.value === currentUser?.name && prevEmailRef.current.value === currentUser?.email) {
+      setErrAuthMessage(ErrorMessage);
     }
   };
 
@@ -49,6 +50,7 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
       email: values.email || email,
     });
     setIsEdit(false);
+    setIsValid(false);
   };
 
   const handleEditClick = () => {
@@ -67,10 +69,10 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
               <div className='profile__field-container'>
                 <input type='text' name='name' minLength='2' placeholder="Введите ваше имя"
                   pattern='^[A-Za-zА-Яа-я\s\-]+$'
-                  ref={updatedName}
+                  ref={prevNameRef}
                   title='Имя должно содержать только допустимые значения'
                   value={values.name || name}
-                  className={`profile__container-label ${errs.email && 'profile__container_label_error'}`}
+                  className={`profile__container-label ${errs.name && 'profile__container_label_error'}`}
                   onChange={handleChangeInput}
                 />
                 <span className='profile__container-errs'>{errs.name}</span>
@@ -84,7 +86,7 @@ const Profile = ({ onSignOut, onChangeUserInfo, errMessage, setErrAuthMessage })
               <div className='profile__field-container'>
                 <input type='email' name='email' placeholder="Введите вашу почту"
                   value={values.email || email}
-                  ref={updatedEmail}
+                  ref={prevEmailRef}
                   onChange={handleChangeInput}
                   className={`profile__container-label ${errs.email && 'profile__container_label_error'}`}
                   pattern='^\S+@\S+\.\S+$'

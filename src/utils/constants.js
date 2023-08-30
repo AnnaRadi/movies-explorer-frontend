@@ -6,17 +6,24 @@ const MoviesApi_URL = `${MoviesApi_Base_URL}beatfilm-movies`;
 
 const authPages = ['/movies', '/saved-movies', '/profile'];
 
-const ScreenSize_Map = {
+const ScreenSizeMap = {
   xl: { cards: 16, addCardsNumber: 4 },
-  lg: { cards: 12, addCardsNumber: 3 },
-  md: { cards: 8, addCardsNumber: 4 },
-  sm: { cards: 5, addCardsNumber: 2 },
+  lg: { cards: 8, addCardsNumber: 2 },
+  md: { cards: 5, addCardsNumber: 2 }
 };
+
+const MaxScreenSize = 1150;
+const MinScreenSize = 720;
+
+const ShortFilmDuration = 40;
 
 export {
   MainApi_URL,
   MoviesApi_URL,
   MoviesApi_Base_URL,
   authPages,
-  ScreenSize_Map,
+  ScreenSizeMap,
+  ShortFilmDuration,
+  MaxScreenSize,
+  MinScreenSize,
 };

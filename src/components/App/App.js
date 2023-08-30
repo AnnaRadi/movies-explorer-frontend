@@ -23,7 +23,7 @@ import './App.css';
 function App() {
 
   const [currentUser, setCurrentUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [isRegistring, setIsRegistring] = useState(false);
   const [errAuthMessage, setErrAuthMessage] = useState('');
   const [infMessage, showMessage] = useMessage();
@@ -31,26 +31,15 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loggedIn) {
-      auth.checkToken()
-        .then((res) => {
-          setCurrentUser(res);
-        })
-        .catch((err) => {
-          console.log(err)
-        });
-    }
-  }, [loggedIn]);
-
-  useEffect(() => {
     auth.checkToken()
-      .then(() => {
+      .then((res) => {
         setLoggedIn(true);
+        setCurrentUser(res);
       })
       .catch(() => {
         setLoggedIn(false);
       });
-  }, [])
+  }, []);
 
   const handleAuth = (user, resetForm) => {
     setErrAuthMessage('');

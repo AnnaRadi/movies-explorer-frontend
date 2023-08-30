@@ -1,14 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { MoviesApi_Base_URL } from '../../../utils/constants';
+import { duration } from '../../../utils/utils';
 import './MoviesCard.css';
 
 const MoviesCard = ({ movie, onSave, onDelete }) => {
-
-  const duration = (number) => {
-    const hours = Math.floor(number / 60);
-    const minutes = number % 60;
-    return `${hours}чч. ${minutes}мин.`;
-  };
 
   const handleSaveClick = () => {
     if (movie.isSaved) {

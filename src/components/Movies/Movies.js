@@ -27,27 +27,71 @@ const Movies = ({ showError, onDelete }) => {
   const [represendMoviesCount, setRepresendMoviesCoun] = useState(screenSize.cards);
   const moviesShow = filteredMovies.slice(0, represendMoviesCount);
 
+  const [firstSearchDone, setFirstSearchDone] = useState(false); // Флаг первого поиска
+
+
   useEffect(() => {
     setIsRegistring(true);
-    Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
-      .then(([moviesData, savedMovies]) => {
-        const moviesSaved = moviesData.map((movie) => {
-          const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
-          return {
-            ...movie,
-            isSaved: Boolean(savedMovie),
-            _id: savedMovie ? savedMovie._id : null,
-          };
+    // Выполнение только при первом поиске
+    if (!firstSearchDone) {
+      Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
+        .then(([moviesData, savedMovies]) => {
+          const moviesSaved = moviesData.map((movie) => {
+            const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
+            return {
+              ...movie,
+              isSaved: Boolean(savedMovie),
+              _id: savedMovie ? savedMovie._id : null,
+            };
+          });
+          setMovies(moviesSaved);
+        })
+        .catch((err) => {
+          showError(`Ошибка: ${err}`);
+        })
+        .finally(() => {
+          setIsRegistring(false);
         });
-        setMovies(moviesSaved);
-      })
-      .catch((err) => {
-        showError(`'Ошибка:' ${err}`);
-      })
-      .finally(() => {
-        setIsRegistring(false);
-      });
-  }, []);
+      
+
+
+      // Устанавливаем флаг первого поиска в true
+      setFirstSearchDone(true);
+    }
+  }, [firstSearchDone]);
+  
+  // useEffect(() => {
+  //   setIsRegistring(true);
+  //   Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
+  //     .then(([moviesData, savedMovies]) => {
+  //       const moviesSaved = moviesData.map((movie) => {
+  //         const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
+  //         return {
+  //           ...movie,
+  //           isSaved: Boolean(savedMovie),
+  //           _id: savedMovie ? savedMovie._id : null,
+  //         };
+  //       });
+  //       setMovies(moviesSaved);
+  //     })
+  //     .catch((err) => {
+  //       showError(`'Ошибка:' ${err}`);
+  //     })
+  //     .finally(() => {
+  //       setIsRegistring(false);
+  //     });
+  // }, []);
+
+  
+  const handleSearch = () => {
+      setFilteredMovies([]);
+      setSearchErr(false);
+      if (!searchAllMovies) {
+        setSearchErr(true);
+        return;
+      }
+      handleFilter(isTimeMovieChecked);
+    };
 
   useEffect(() => {
     setRepresendMoviesCoun(screenSize.cards);
@@ -132,16 +176,6 @@ const Movies = ({ showError, onDelete }) => {
   const handleTimeMovieChange = (check) => {
     setIsTimeMovieChecked(check);
     handleFilter(check);
-  };
-
-  const handleSearch = () => {
-    setFilteredMovies([]);
-    setSearchErr(false);
-    if (!searchAllMovies) {
-      setSearchErr(true);
-      return;
-    }
-    handleFilter(isTimeMovieChecked);
   };
 
   const handleLoadMore = () => {
