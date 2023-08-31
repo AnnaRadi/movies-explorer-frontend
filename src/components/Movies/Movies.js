@@ -52,13 +52,21 @@ const Movies = ({ showError, onDelete }) => {
         .finally(() => {
           setIsRegistring(false);
         });
-      
-
-
       // Устанавливаем флаг первого поиска в true
       setFirstSearchDone(true);
     }
   }, [firstSearchDone]);
+
+  const handleSearch = () => {
+    setFilteredMovies([]);
+    setSearchErr(false);
+    if (!searchAllMovies) {
+      setSearchErr(true);
+      return;
+    }
+    handleFilter(isTimeMovieChecked);
+  };
+
   
   // useEffect(() => {
   //   setIsRegistring(true);
@@ -81,17 +89,6 @@ const Movies = ({ showError, onDelete }) => {
   //       setIsRegistring(false);
   //     });
   // }, []);
-
-  
-  const handleSearch = () => {
-      setFilteredMovies([]);
-      setSearchErr(false);
-      if (!searchAllMovies) {
-        setSearchErr(true);
-        return;
-      }
-      handleFilter(isTimeMovieChecked);
-    };
 
   useEffect(() => {
     setRepresendMoviesCoun(screenSize.cards);

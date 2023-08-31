@@ -30,6 +30,26 @@ function App() {
   const [errMessage, showError] = useError();
   const navigate = useNavigate();
 
+  // const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem('allMovies')));
+  // const [savedMovies, setsavedMovies] = useState(JSON.parse(localStorage.getItem('savedMovies'))); 
+
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     Promise.all([
+  //       mainApi.getUser(),
+  //       mainApi.getMovies(),
+  //       moviesApi.getMovies(),
+  //     ]).then(([userdata, savedMovies, allMovies]) => {
+  //         setCurrentUser(userdata);
+  //         setsavedMovies(savedMovies);
+  //         setAllMovies(allMovies);
+  //         localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  //         localStorage.setItem('allMovies', JSON.stringify(allMovies));
+  //       })
+  //       .catch((err) =>console.log(err));
+  //   }
+  // },[loggedIn]);
+      
   useEffect(() => {
     auth.checkToken()
       .then((res) => {
