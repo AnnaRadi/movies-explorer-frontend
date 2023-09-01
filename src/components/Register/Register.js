@@ -69,7 +69,7 @@ const Register = ({ onSignUp, errMessage, setErrAuthMessage }) => {
                     </button>
                 </form>
                 <p className="register__form-question">Уже зарегистрированы?
-                    <a className="register__signin" href="/signin">Войти</a>
+                    <Link className="register__signin" to="/signin">Войти</Link>
                 </p>
             </section>
         </main>

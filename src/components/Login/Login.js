@@ -58,7 +58,8 @@ const Login = ({ onSignIn, errMessage, setErrAuthMessage }) => {
 
                 </form>
                 <p className="login__question">Еще не зареристрированы?
-                    <a className="login__container-link" href="/signup">Регистрация</a></p>
+                    <Link className="login__container-link" to="/signup">Регистрация</Link>
+                </p>
             </section>
         </main>
     )
