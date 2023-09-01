@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 // import filmList from "../../utils/filmListSaved.json";
-import { moviesApi } from '../../utils/MoviesApi';
 import Header from '../Header/Header'
 import SeachForm from '../Movies/SearchForm/SearchForm'
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
@@ -15,9 +14,9 @@ import './SavedMovies.css'
 
 const SavedMovies = ({ onDelete, showError }) => {
   const [savedMovies, setSavedMovie] = useState([]);
+  const [movies, setMovies] = useLocalStorage('movies', []);
   const { isRegistring, setIsRegistring } = useContext(CurrentUserContext);
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const [movies, setMovies] = useLocalStorage('movies', []); // Локальное хранилище данных фильмов
+  const [filteredMovies, setFilteredMovies] = useState([]); // Локальное хранилище данных фильмов
   const [isTimeMovieChecked, setIsTimeMovieChecked] = useState(false);
   const [searchAllMovies, setSearchAllMovies] = useState('');
   const [isNotFound, setIsNotFound] = useState(false);
@@ -40,49 +39,20 @@ const SavedMovies = ({ onDelete, showError }) => {
       });
   };
 
-  const loadMovies = () => {
+  useEffect(() => {
     setIsRegistring(true);
-    Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
-      .then(([moviesData, savedMovies]) => {
-        const moviesSaved = moviesData.map((movie) => {
-          const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
-          return {
-            ...movie,
-            isSaved: Boolean(savedMovie),
-            _id: savedMovie ? savedMovie._id : null,
-          };
-        });
-        setMovies(moviesSaved);
+    mainApi
+      .getMovies()
+      .then((movies) => {
+        setSavedMovie(movies);
+        setFilteredMovies(movies);
       })
       .catch((err) => {
-        showError(`Ошибка: ${err}`);
+        showError(`'Ошибка:' ${err}`);
       })
       .finally(() => {
         setIsRegistring(false);
       });
-  };
-
-  useEffect(() => {
-    if(!movies.length) {
-      loadMovies()
-    }
-
-    const savedFilteredMovies = movies.filter((movie) => movie.isSaved);
-    setSavedMovie([...savedFilteredMovies]);
-    setFilteredMovies([...savedFilteredMovies]);
-
-    // mainApi
-    //   .getMovies()
-    //   .then((movies) => {
-    //     setSavedMovie(movies);
-    //     setFilteredMovies(movies);
-    //   })
-    //   .catch((err) => {
-    //     showError(`'Ошибка:' ${err}`);
-    //   })
-    //   .finally(() => {
-    //     setIsRegistring(false);
-    //   });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

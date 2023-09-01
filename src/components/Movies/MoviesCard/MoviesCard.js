@@ -21,7 +21,7 @@ const MoviesCard = ({ movie, onSave, onDelete }) => {
   return (
     <li className='movie'>
       <a href={`${movie.trailerLink}`} className='movie__link' target='_blank' rel='noreferrer'>
-        <img src={`${MoviesApi_Base_URL}${movie.image.url}`} className='movie__image' alt={movie.nameRU} />
+        <img src={isSavedFilmsPage ? `${movie.image}` : `${MoviesApi_Base_URL}${movie.image.url}`} className='movie__image' alt={movie.nameRU} />
       </a>
       <div className='movie__container-info'>
         <div className='movie__box'>
