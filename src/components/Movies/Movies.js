@@ -56,7 +56,7 @@ const Movies = ({ showError, onDelete }) => {
       loadMovies();
       return;
     }
-
+    setRepresendMoviesCoun(screenSize.cards);
     setFilteredMovies([]);
     setSearchErr(false);
 

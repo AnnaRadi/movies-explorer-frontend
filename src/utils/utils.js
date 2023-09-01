@@ -29,7 +29,7 @@ const findScreenSizeMap = (screenWidth) => {
 const duration = (number) => {
   const hours = Math.floor(number / 60);
   const minutes = number % 60;
-  return `${hours}чч. ${minutes}мин.`;
+  return `${hours}ч. ${minutes}мин.`;
 };
 
 const ErrorMessage = "Такие данные уже используются";
