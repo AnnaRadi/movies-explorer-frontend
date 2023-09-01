@@ -21,7 +21,7 @@ const Movies = ({ showError, onDelete }) => {
   const [isNotFound, setIsNotFound] = useState(false);
   const [searchErr, setSearchErr] = useState(false);
   const { isRegistring, setIsRegistring } = useContext(CurrentUserContext);
-  const [filteredMovies, setFilteredMovies] = useLocalStorage('filteredMovies', []);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [isTimeMovieChecked, setIsTimeMovieChecked] = useLocalStorage('isTimeMovieChecked', false);
   const [searchAllMovies, setSearcAllhMovies] = useLocalStorage('searchAllMovies', '');
   const [represendMoviesCount, setRepresendMoviesCoun] = useState(screenSize.cards);
@@ -56,6 +56,7 @@ const Movies = ({ showError, onDelete }) => {
       loadMovies();
       return;
     }
+
     setRepresendMoviesCoun(screenSize.cards);
     setFilteredMovies([]);
     setSearchErr(false);
@@ -90,6 +91,12 @@ const Movies = ({ showError, onDelete }) => {
   //       setIsRegistring(false);
   //     });
   // }, []);
+
+  useEffect(() => {
+    if(!searchAllMovies) {
+      setFilteredMovies([]);
+    }
+  }, []);
 
   useEffect(() => {
     setRepresendMoviesCoun(screenSize.cards);
@@ -167,7 +174,7 @@ const Movies = ({ showError, onDelete }) => {
 
   const handleFilter = (check) => {
     setIsNotFound(false);
-    if (!searchAllMovies && movies.length === 0) return;
+    if (!searchAllMovies || movies.length === 0) return;
     const filter = updateFiltered(movies, searchAllMovies, check);
     return filter.length > 0 ? setFilteredMovies(filter) : setIsNotFound(true);
   };
