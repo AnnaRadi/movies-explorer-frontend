@@ -1,0 +1,122 @@
+.promo {
+    background-color: #073042;
+    color: #fff;
+    width: 100%;
+}
+
+.promo__container {
+    margin: 0;
+    padding: 74px 70px 75px 70px;
+}
+
+.promo__text-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.promo__title {
+    max-width: 670px;
+    margin: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+}
+
+.promo__subtitle {
+    font-size: 13px;
+    max-width: 340px;
+    padding: 36px 0 0 0;
+    margin: 0;
+    opacity: 0.5;
+}
+
+.promo__subtitle:hover {
+    opacity: 1;
+}
+
+.promo__img {
+    width: 310px;
+    height: 304px;
+}
+
+.promo__button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 83px 0 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #FFF;
+    width: 127px;
+    height: 34px;
+    background-color: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.promo__button:hover {
+    opacity: 0.6000000238418579;
+}
+
+@media screen and (max-width: 1100px) {
+    .promo__text-group {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .promo__container {
+        margin: 0;
+        padding: 140px 0 76px 0;
+    }
+
+    .promo__title {
+        max-width: 680px;
+        font-size: 40px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .promo__subtitle {
+        max-width: 260px;
+        padding: 20px 0 89px 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .promo__img {
+        margin: 0 0 48px 0;
+    }
+
+    .promo__button {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .promo__container {
+        max-width: 93.75%;
+        margin: 0 auto 0 auto;
+        padding: 70px 0 30px 0;
+    }
+
+    .promo__title {
+        width: 300px;
+        font-size: 28px;
+        line-height: 38px;
+    }
+
+    .promo__subtitle {
+        padding: 20px 0 80px 0;
+    }
+
+    .promo__img {
+        width: 210px;
+        height: 206px;
+        margin: 0 0 44px 0;
+    }
+}
