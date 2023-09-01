@@ -17,57 +17,58 @@ import FilterCheckbox from '../Movies/SearchForm/FilterCheckbox/FilterCheckbox';
 
 const Movies = ({ showError, onDelete }) => {
   const [screenSize, setScreenSize] = useState(findScreenSizeMap(window.innerWidth));
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useLocalStorage('movies', []);
   const [isNotFound, setIsNotFound] = useState(false);
   const [searchErr, setSearchErr] = useState(false);
   const { isRegistring, setIsRegistring } = useContext(CurrentUserContext);
-  const [filteredMovies, setFilteredMovies] = useLocalStorage('movies', []);
+  const [filteredMovies, setFilteredMovies] = useLocalStorage('filteredMovies', []);
   const [isTimeMovieChecked, setIsTimeMovieChecked] = useLocalStorage('isTimeMovieChecked', false);
   const [searchAllMovies, setSearcAllhMovies] = useLocalStorage('searchAllMovies', '');
   const [represendMoviesCount, setRepresendMoviesCoun] = useState(screenSize.cards);
   const moviesShow = filteredMovies.slice(0, represendMoviesCount);
+  const [isMoviesLoaded, setIsMoviesLoaded] = useState(false); // Флаг загружены ли фильмы через апи
 
-  const [firstSearchDone, setFirstSearchDone] = useState(false); // Флаг первого поиска
-
-
-  useEffect(() => {
+  const loadMovies = () => {
     setIsRegistring(true);
-    // Выполнение только при первом поиске
-    if (!firstSearchDone) {
-      Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
-        .then(([moviesData, savedMovies]) => {
-          const moviesSaved = moviesData.map((movie) => {
-            const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
-            return {
-              ...movie,
-              isSaved: Boolean(savedMovie),
-              _id: savedMovie ? savedMovie._id : null,
-            };
-          });
-          setMovies(moviesSaved);
-        })
-        .catch((err) => {
-          showError(`Ошибка: ${err}`);
-        })
-        .finally(() => {
-          setIsRegistring(false);
+    Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
+      .then(([moviesData, savedMovies]) => {
+        const moviesSaved = moviesData.map((movie) => {
+          const savedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
+          return {
+            ...movie,
+            isSaved: Boolean(savedMovie),
+            _id: savedMovie ? savedMovie._id : null,
+          };
         });
-      // Устанавливаем флаг первого поиска в true
-      setFirstSearchDone(true);
-    }
-  }, [firstSearchDone]);
+        setMovies(moviesSaved);
+        setIsMoviesLoaded(true);
+      })
+      .catch((err) => {
+        showError(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        setIsRegistring(false);
+      });
+  };
 
   const handleSearch = () => {
+    if(!isMoviesLoaded && !movies.length) {
+      loadMovies();
+      return;
+    }
+
     setFilteredMovies([]);
     setSearchErr(false);
+
     if (!searchAllMovies) {
       setSearchErr(true);
       return;
     }
+
     handleFilter(isTimeMovieChecked);
   };
 
-  
+
   // useEffect(() => {
   //   setIsRegistring(true);
   //   Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
@@ -125,6 +126,7 @@ const Movies = ({ showError, onDelete }) => {
       }
     });
     setFilteredMovies(updatedAllMovies);
+    handleFilter(isTimeMovieChecked);
   }, [movies]);
 
   const handleSaveClick = (movie) => {
@@ -165,7 +167,7 @@ const Movies = ({ showError, onDelete }) => {
 
   const handleFilter = (check) => {
     setIsNotFound(false);
-    if (!searchAllMovies && filteredMovies.length === 0) return;
+    if (!searchAllMovies && movies.length === 0) return;
     const filter = updateFiltered(movies, searchAllMovies, check);
     return filter.length > 0 ? setFilteredMovies(filter) : setIsNotFound(true);
   };

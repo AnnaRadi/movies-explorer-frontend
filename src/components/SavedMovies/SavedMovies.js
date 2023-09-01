@@ -4,7 +4,7 @@ import Header from '../Header/Header'
 import SeachForm from '../Movies/SearchForm/SearchForm'
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
-
+import useLocalStorage from '../../utils/useLocalStorage';
 import mainApi from '../../utils/MainApi';
 import FilterCheckbox from '../Movies/SearchForm/FilterCheckbox/FilterCheckbox';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
@@ -14,8 +14,9 @@ import './SavedMovies.css'
 
 const SavedMovies = ({ onDelete, showError }) => {
   const [savedMovies, setSavedMovie] = useState([]);
+  const [movies, setMovies] = useLocalStorage('movies', []);
   const { isRegistring, setIsRegistring } = useContext(CurrentUserContext);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]); // Локальное хранилище данных фильмов
   const [isTimeMovieChecked, setIsTimeMovieChecked] = useState(false);
   const [searchAllMovies, setSearchAllMovies] = useState('');
   const [isNotFound, setIsNotFound] = useState(false);
@@ -26,6 +27,12 @@ const SavedMovies = ({ onDelete, showError }) => {
       .then(() => {
         setSavedMovie((prev) => prev.filter((movie) => movie._id !== movieId));
         setFilteredMovies((prev) => prev.filter((movie) => movie._id !== movieId));
+        setMovies((prev) =>
+          prev.map((film) =>
+            film._id === movieId ?
+              { ...film, isSaved: false, _id: null, } : film
+          )
+        );
       })
       .catch((err) => {
         showError(err);
